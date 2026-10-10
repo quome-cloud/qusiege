@@ -20,6 +20,14 @@
 
 A guardrail evaluated once at submission and then deployed for months rots: attack classes evolve, configuration changes silently reopen closed vulnerabilities, live attacks need containment, and dependency failures must degrade safely. The redteam layer is an off-hot-path meta-layer of the qfire gateway that continuously exercises every other control: a loop-until-dry replay runner with deterministic mutation operators, a change-triggered regression gate, an incident-response runbook engine over the signed quledger decision stream, and a chaos/fault-injection harness that checks fail-safe invariants. On the HAARF-RedTeam corpus (62 attacks across all 8 HAARF control families and 13 gateway layers, tagged by MITRE ATLAS technique), continuous red-teaming discovers 62 distinct vulnerabilities versus 12 for a one-shot evaluation, the regression gate catches 100% of 75 reopened vulnerabilities, runbook automation cuts mean time-to-contain from 12 to 1 steps (91.7%), and the fail-safe gateway holds 12/12 resilience invariants. Coverage is reported honestly: 14 ATLAS techniques over 10 of 13 layers, with the layers unbuilt at corpus time (lifecycle, consent, device) named as untested.
 
+<div align="center">
+
+[![Qusiege: Continuous Red-Teaming and Resilience for Clinical AI Agents (talk)](assets/qusiege-video.png)](https://youtu.be/R0UM6z0Mswk)
+
+**▶ Watch: [Qusiege: Continuous Red-Teaming and Resilience for Clinical AI Agents (talk)](https://youtu.be/R0UM6z0Mswk)**
+
+</div>
+
 `qusiege` is **a module of the QUOKKAGUARD program**: one Rust security gateway (`qfire`) that sits in front of any OpenAI-compatible model endpoint and decides **ALLOW ▸ forward · BLOCK ▸ refuse · ESCALATE ▸ human review** for every request and response. Each module adds exactly one enforcement layer to that gateway plus one adversarial dataset and one paper. This repository is a self-contained snapshot of the gateway with **this layer** (`src/redteam/`, on the *monitor* path, HAARF control C3.1/3.7/3.8), its dataset (**HAARF-RedTeam**), the experiment harness, and the paper.
 
 > Everything here runs **offline**: no model API keys, no network calls in the experiments.
